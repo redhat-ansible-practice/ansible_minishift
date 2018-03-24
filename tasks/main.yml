@@ -8,6 +8,7 @@
     loop:
       - libvirt
       - qemu-kvm
+      - origin-clients
 
   - name: add user tothe libvirt group
     user:
