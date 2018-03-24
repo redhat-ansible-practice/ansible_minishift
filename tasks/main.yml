@@ -1,0 +1,28 @@
+---
+# tasks file for minishift
+
+  - name: install required rpms
+    dnf:
+      state: latest
+      name: '{{item}}'
+    loop:
+      - libvirt
+      - qemu-kvm
+
+  - name: add user tothe libvirt group
+    user:
+      name: "{{ minishift_user }}"
+      comment: The person using minishift
+      group: "{{ minishift_group }}"
+
+  - name: download minishift
+    get_url:
+      url: "{{ minishift_url }}"
+      dest: "{{ minishift_tmp }}"
+
+  - name: unarchive minishift
+    src: "{{ minishift_tmp }}/{{ minishift_version }}"
+    dest: /usr/local/bin
+    remote_src: yes
+    creates: "/usr/local/bin/{{ minishift_version }}"
+    mode: 755
