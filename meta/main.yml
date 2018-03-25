@@ -9,8 +9,6 @@ galaxy_info:
     versions:
     - 26
     - 27
-  categories:
-  - system
   galaxy_tags:
   - fedora
   - minishift
