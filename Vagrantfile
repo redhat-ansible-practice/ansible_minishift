@@ -11,14 +11,13 @@ Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "fedora/latest"
+  # boxes at https://vagrantcloud.com/sea
+  config.vm.box = "fedora/27-cloud-base"
   config.ssh.insert_key = false
-
   config.vm.provision "ansible" do |ansible|
     ansible.verbose = "v"
     ansible.become = true
-    ansible.playbook = "test.yml"
+    ansible.playbook = "centos-update.yml"
   end
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
