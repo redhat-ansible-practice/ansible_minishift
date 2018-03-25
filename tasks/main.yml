@@ -9,8 +9,10 @@
       - libvirt
       - qemu-kvm
       - origin-clients
+      - libselinux-python
+  
 
-  - name: add user tothe libvirt group
+  - name: create "{{ minishift_user }}" and add to the libvirt group
     user:
       name: "{{ minishift_user }}"
       comment: The person using minishift
@@ -22,8 +24,15 @@
       dest: "{{ minishift_tmp }}"
 
   - name: unarchive minishift
-    src: "{{ minishift_tmp }}/{{ minishift_version }}"
-    dest: /usr/local/bin
-    remote_src: yes
-    creates: "/usr/local/bin/{{ minishift_version }}"
-    mode: 755
+    unarchive:
+      src: "{{ minishift_tmp }}/{{ minishift_version }}"
+      dest: /usr/local/bin
+      remote_src: yes
+      creates: "/usr/local/bin/{{ minishift_version }}"
+      mode: 755
+
+  - name: move the binary from the tar output
+    copy:
+      src: /usr/local/bin/{{ minishift_binary_copy}}/{{ minishift_binary }}
+      dest: /usr/local/bin/{{ minishift_binary }}
+      remote_src: yes
