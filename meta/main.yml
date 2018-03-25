@@ -3,9 +3,9 @@ galaxy_info:
   company: ALOTFIT
   description: "Install minishift on fedora"
   min_ansible_version: 2.5.0
-  license: GPL3
+  license: GPLv3
   platforms:
-  - name: fedora
+  - name: Fedora
     versions:
     - 26
     - 27
