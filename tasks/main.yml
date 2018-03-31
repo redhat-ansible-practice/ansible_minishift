@@ -4,7 +4,7 @@
   - name: install required rpms
     dnf:
       state: latest
-      name: '{{item}}'
+      name: "{{ item }}"
     loop:
       - libvirt
       - qemu-kvm
