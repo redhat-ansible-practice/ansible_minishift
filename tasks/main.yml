@@ -4,12 +4,11 @@
   - name: install required rpms
     dnf:
       state: latest
-      name: "{{ item }}"
-    loop:
-      - libvirt
-      - qemu-kvm
-      - origin-clients
-      - libselinux-python
+      name:
+       - libvirt
+       - qemu-kvm
+       - origin-clients
+       - libselinux-python
   
   - name: start and enable libvirtd
     system:
