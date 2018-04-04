@@ -11,12 +11,17 @@
       - origin-clients
       - libselinux-python
   
+  - name: start and enable libvirtd
+    system:
+      name: libvirtd
+      enabled: yes
+      state: started
 
   - name: create "{{ minishift_user }}" and add to the libvirt group
     user:
       name: "{{ minishift_user }}"
       comment: The person using minishift
-      group: "{{ minishift_group }}"
+      groups: "{{ minishift_group }}"
 
   - name: download minishift
     get_url:
