@@ -7,7 +7,7 @@
       name: "{{ minishift_rpms }}"
 
   - name: start and enable libvirtd
-    system:
+    systemd:
       name: libvirtd
       enabled: yes
       state: started
