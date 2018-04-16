@@ -1,7 +1,7 @@
 ---
 # defaults file for minishift
 minishift_rpms: "libvirt, qemu-kvm, origin-clients, libselinux-python"
-minishift_kvm:
+minishift_kvm: https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.8.2/docker-machine-driver-kvm
 minishift_dir: /usr/bin/local
 minishift_user: jcasanova
 minishift_group: libvirt
