@@ -1,10 +1,12 @@
-Role Name
+Ansible Minishift
 =========
 
-Downloads minishift and installs the binary.
+Installs all the required rpms and binaries to use minishift on a system.
 
 Requirements
 ------------
+
+An actual physical system with linux installed since this role does not support being installed in a Virtual Machine.
 
 Role Variables
 --------------
@@ -28,4 +30,3 @@ GPLv3
 
 Author Information
 ------------------
-jlozada2426@protonmail.com
