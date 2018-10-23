@@ -1,16 +1,14 @@
 ---
 # tasks file for minishift
 
+  - include_tasks: centos.yml
+    when: ansible_pkg_mgr == "yum" and ( ansible_distribution == "RedHat" or ansible_distribution == "CentOS" )
+
   - name: install required rpms
-    dnf:
+    yum:
       state: latest
       name: "{{ minishift_rpms }}"
-
-  - name: start and enable libvirtd
-    systemd:
-      name: libvirtd
-      enabled: yes
-      state: started
+    notify: start and enable libvirtd
 
   - name: create "{{ minishift_user }}" and add to the libvirt group
     user:
@@ -22,10 +20,12 @@
     get_url:
       url: "{{ minishift_kvm }}"
       dest: "{{ minishift_dir }}"
+      
   - name: download minishift
     get_url:
       url: "{{ minishift_url }}"
       dest: "{{ minishift_tmp }}"
+      validate_certs: no
 
   - name: unarchive minishift
     unarchive:
